@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import Image from "next/dist/client/image";
 import { StarIcon } from "@heroicons/react/solid";
 import { useDispatch } from "react-redux";
-import { addToBasket } from "../slices/basketSlice";
+import { addToBasket } from "../../slices/basketSlice";
 // import CurrencyFormat from "react-currency-format";
 
 export default function Product({
   id,
   title,
   price,
-
   description,
   category,
   image,

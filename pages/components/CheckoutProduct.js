@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Image from "next/image";
 import { StarIcon } from "@heroicons/react/solid";
 import { useDispatch } from "react-redux";
-import { addToBasket, removeFromBasket } from "../slices/basketSlice";
+import { addToBasket, removeFromBasket } from "../../slices/basketSlice";
 function CheckoutProduct({
   id,
   title,
@@ -63,6 +63,8 @@ function CheckoutProduct({
             <Image
               loading="lazy"
               src="https://links.papareact.com/fdw"
+              width={48}
+              height={48}
               alt="image"
               className="w-12"
             />

@@ -8,7 +8,7 @@ import {
 } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { selectItems } from "../slices/basketSlice";
+import { selectItems } from "../../slices/basketSlice";
 
 function Header() {
   const { data: session } = useSession();
