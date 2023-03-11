@@ -2,5 +2,5 @@ module.exports = {
   images: {
     domains: ["links.papareact.com", "fakestoreapi.com"],
   },
-  pageExtensions: ["page.tsx", "page.ts", "page.jsx", "page.js"],
+  pageExtensions: ["mdx", "md", "jsx", "js", "tsx", "ts"],
 };
