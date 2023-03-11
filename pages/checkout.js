@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import Header from "./components/Header";
 import Image from "next/image";
 import { useSelector } from "react-redux";

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import Image from "next/image";
 import { StarIcon } from "@heroicons/react/solid";
 import { useDispatch } from "react-redux";

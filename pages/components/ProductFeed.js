@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import Product from "./Product";
 import dynamic from "next/dynamic";
 
