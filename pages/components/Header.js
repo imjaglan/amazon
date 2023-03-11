@@ -23,7 +23,7 @@ function Header() {
           <Image
             onClick={() => router.push("/")}
             src="https://links.papareact.com/f90"
-            alt=""
+            alt="amazon"
             width={150}
             height={40}
             objectFit="contain"
