@@ -37,7 +37,13 @@ function CheckoutProduct({
 
   return (
     <div className="grid grid-cols-5">
-      <Image src={image} height={200} width={200} className="object-contain" />
+      <Image
+        src={image}
+        alt="product"
+        height={200}
+        width={200}
+        className="object-contain"
+      />
 
       {/* middle desc section */}
       <div className="col-span-3 mx-5">
@@ -54,9 +60,10 @@ function CheckoutProduct({
 
         {hasPrime && (
           <div className="flex items-center space-x-2">
-            <img
+            <Image
               loading="lazy"
               src="https://links.papareact.com/fdw"
+              alt="image"
               className="w-12"
             />
             <p className="text-xs text-gray-500">FREE Next-Day Delivery</p>
