@@ -4,12 +4,12 @@ import Image from "next/image";
 import { useSelector } from "react-redux";
 import { selectItems, selectTotal } from "./slices/basketSlice";
 import CheckoutProduct from "./components/CheckoutProduct";
-// import { useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 function Checkout() {
   const total = useSelector(selectTotal);
   const items = useSelector(selectItems);
-  // const { data: session } = useSession();
+  const { data: session } = useSession();
   return (
     <div className="bg-gray-100">
       <Header />
@@ -56,7 +56,7 @@ function Checkout() {
                 </span>
               </h2>
 
-              {/* <button
+              <button
                 disabled={!session}
                 className={`button  ${
                   !session &&
@@ -64,7 +64,7 @@ function Checkout() {
                 }`}
               >
                 {!session ? "Sign in to Checkout" : "Proceed To Checkout"}
-              </button> */}
+              </button>
             </>
           )}
         </div>
