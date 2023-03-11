@@ -1,18 +1,27 @@
 import React from "react";
 import Image from "next/image";
+import { useSession, signIn, signOut } from "next-auth/react";
 import {
   MenuIcon,
   SearchIcon,
   ShoppingCartIcon,
 } from "@heroicons/react/outline";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { selectItems } from "../slices/basketSlice";
 
 function Header() {
+  const { data: session } = useSession();
+  const router = useRouter();
+  const items = useSelector(selectItems); //selector is used to grab anything from the store
+
   return (
     <header>
       {/* top nav */}
       <div className="flex items-center bg-amazon_blue p-1 flex-grow py-1">
         <div className="mt-3 mx-2 flex items-center flex-grow sm:flex-grow-0">
           <Image
+            onClick={() => router.push("/")}
             src="https://links.papareact.com/f90"
             alt=""
             width={150}
@@ -32,8 +41,8 @@ function Header() {
         {/* right side of the bar */}
 
         <div className="text-white flex items-center text-s space-x-6 mx-6 whitespace-nowrap">
-          <div className=" link">
-            <p>Hey Sagar Jaglan</p>
+          <div onClick={!session ? signIn : signOut} className=" link">
+            <p>{session ? `Hello , ${session.user.name}` : "Sign In"}</p>
             <p className="fonrt-extrabold  md:text-sm">Account & Lists</p>
           </div>
 
@@ -42,9 +51,12 @@ function Header() {
             <p className="fonrt-extrabold md:text-sm">&Orders</p>
           </div>
 
-          <div className=" relative link flex items-center">
+          <div
+            onClick={() => router.push("/checkout")}
+            className=" relative link flex items-center"
+          >
             <span className=" absolute top-0 right-0 text-xs md:right-10 h-4 w-4 bg-yellow-400  text-center rounded-full text-black font-bold ">
-              0
+              {items.length}
             </span>
             <ShoppingCartIcon className="h-10" />
             <p className=" hidden fonrt-extrabold md:text-sm md:inline ">

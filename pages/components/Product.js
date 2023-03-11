@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import Image from "next/dist/client/image";
 import { StarIcon } from "@heroicons/react/solid";
+import { useDispatch } from "react-redux";
+import { addToBasket } from "../slices/basketSlice";
 // import CurrencyFormat from "react-currency-format";
 
 export default function Product({
   id,
   title,
   price,
+
   description,
   category,
   image,
 }) {
+  const dispatch = useDispatch();
   const MAX_RATING = 5;
   const MIN_RATING = 1;
   const [rating] = useState(
@@ -18,6 +22,22 @@ export default function Product({
   );
 
   const [hasPrime] = useState(Math.random() < 0.5);
+
+  //onclick event and push the item to the basket
+  const addItemToBasket = () => {
+    const product = {
+      id,
+      title,
+      price,
+      hasPrime,
+      rating,
+      description,
+      category,
+      image,
+    };
+    //sending the product as an action to the store
+    dispatch(addToBasket(product));
+  };
 
   return (
     <div className="relative flex flex-col  m-5 bg-white z-30 p-10">
@@ -29,7 +49,8 @@ export default function Product({
         alt="product"
         height={200}
         width={200}
-        objectFit="contain"
+        // objectFit="contain"
+        className="h-60 w-60"
       />
       <h4 className="my-3">{title}</h4>
       <div className="flex">
@@ -44,7 +65,7 @@ export default function Product({
 
       <div className="mb-5">
         {/* <CurrencyFormat value={price} displayType={"text"} prefix={"$"} /> */}
-        <div>5$</div>
+        <div>${price}</div>
       </div>
       {hasPrime && (
         <div className="flex items-center space-x-2 -mt-5">
@@ -52,7 +73,9 @@ export default function Product({
           <h2 className="text-xs  text-gray-500">FREE Next-day Delivery</h2>
         </div>
       )}
-      <button className="mt-auto button">Add to Basket</button>
+      <button onClick={addItemToBasket} className="mt-auto button">
+        Add to Basket
+      </button>
     </div>
   );
 }
