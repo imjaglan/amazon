@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { selectItems } from "../slices/basketSlice";
 
 function Header() {
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   const router = useRouter();
   const items = useSelector(selectItems); //selector is used to grab anything from the store
 
@@ -41,10 +41,10 @@ function Header() {
         {/* right side of the bar */}
 
         <div className="text-white flex items-center text-s space-x-6 mx-6 whitespace-nowrap">
-          <div onClick={!session ? signIn : signOut} className=" link">
+          {/* <div onClick={!session ? signIn : signOut} className=" link">
             <p>{session ? `Hello , ${session.user.name}` : "Sign In"}</p>
             <p className="fonrt-extrabold  md:text-sm">Account & Lists</p>
-          </div>
+          </div> */}
 
           <div className=" link">
             <p>Returns</p>
