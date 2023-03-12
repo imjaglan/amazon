@@ -19,33 +19,48 @@ export default async (req, res) => {
 
   //prepare the format
   const session = await stripe.checkout.sessions.create({
-    payment_method_types: ["card"],
-    // shipping_rates: ["shr_1MkhjpSFwpst7WfOOYZrRrjo"],
-    shipping_options: [
+    // payment_method_types: ["card"],
+    // // shipping_rates: ["shr_1MkhjpSFwpst7WfOOYZrRrjo"],
+    // shipping_options: [
+    //   {
+    //     shipping_rate_data: {
+    //       type: "fixed_amount",
+    //       fixed_amount: { amount: 0, currency: "usd" },
+    //       display_name: "Free shipping",
+    //       delivery_estimate: {
+    //         minimum: { unit: "business_day", value: 5 },
+    //         maximum: { unit: "business_day", value: 7 },
+    //       },
+    //     },
+    //     // shipping_rate: ["shr_1MkhjpSFwpst7WfOOYZrRrjo"],
+    //   },
+    // ],
+    // shipping_address_collection: {
+    //   allowed_countries: ["GB", "US", "CA", "IN"],
+    // },
+    // line_items: transformedItems,
+    // mode: "payment",
+    // success_url: `${process.env.HOST}/sucess`,
+    // cancel_url: `${process.env.HOST}/checkout`,
+    // metadata: {
+    //   email,
+    //   images: JSON.stringify(items.map((item) => item.image)),
+    // },
+    line_items: [
       {
-        shipping_rate_data: {
-          type: "fixed_amount",
-          fixed_amount: { amount: 0, currency: "usd" },
-          display_name: "Free shipping",
-          delivery_estimate: {
-            minimum: { unit: "business_day", value: 5 },
-            maximum: { unit: "business_day", value: 7 },
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: "T-shirt",
           },
+          unit_amount: 2000,
         },
-        // shipping_rate: ["shr_1MkhjpSFwpst7WfOOYZrRrjo"],
+        quantity: 1,
       },
     ],
-    shipping_address_collection: {
-      allowed_countries: ["GB", "US", "CA", "IN"],
-    },
-    line_items: transformedItems,
     mode: "payment",
-    success_url: `${process.env.HOST}/sucess`,
-    cancel_url: `${process.env.HOST}/checkout`,
-    metadata: {
-      email,
-      images: JSON.stringify(items.map((item) => item.image)),
-    },
+    success_url: "http://localhost:4242/success",
+    cancel_url: "http://localhost:4242/cancel",
   });
 
   res.status(200).json({ id: session.id });
