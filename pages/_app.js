@@ -12,7 +12,7 @@ export default function App({
     <>
       <SessionProvider session={session}>
         <Provider store={store}>
-          <Component {...pageProps} />;
+          <Component {...pageProps} />
         </Provider>
       </SessionProvider>
     </>
