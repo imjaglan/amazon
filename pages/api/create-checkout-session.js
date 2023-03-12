@@ -46,21 +46,10 @@ export default async (req, res) => {
     //   email,
     //   images: JSON.stringify(items.map((item) => item.image)),
     // },
-    line_items: [
-      {
-        price_data: {
-          currency: "usd",
-          product_data: {
-            name: "T-shirt",
-          },
-          unit_amount: 2000,
-        },
-        quantity: 1,
-      },
-    ],
+    line_items: transformedItems,
     mode: "payment",
-    success_url: "http://localhost:4242/success",
-    cancel_url: "http://localhost:4242/cancel",
+    success_url: `${process.env.HOST}/sucess`,
+    cancel_url: `${process.env.HOST}/checkout`,
   });
 
   res.status(200).json({ id: session.id });
