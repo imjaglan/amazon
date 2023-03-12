@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Image from "next/image";
+import amazonLogo from "../../public/amazonLogo.png";
 import { useSession, signIn, signOut } from "next-auth/react";
 import {
   MenuIcon,
@@ -22,7 +23,7 @@ function Header() {
         <div className="mt-3 mx-2 flex items-center flex-grow sm:flex-grow-0">
           <Image
             onClick={() => router.push("/")}
-            src="https://links.papareact.com/f90"
+            src={amazonLogo}
             priority
             alt="amazon"
             width={150}
